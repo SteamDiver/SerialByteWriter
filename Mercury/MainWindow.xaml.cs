@@ -20,12 +20,13 @@ namespace Mercury
     /// </summary>
     public partial class MainWindow : Window
     {
-        SerialPort mySerialPort = new SerialPort("COM2");
+        private SerialPort mySerialPort = new SerialPort();
 
         public MainWindow()
         {
             InitializeComponent();
 
+            ComsCb.ItemsSource = SerialPort.GetPortNames();
             mySerialPort.BaudRate = 9600;
             mySerialPort.Parity = Parity.None;
             mySerialPort.StopBits = StopBits.One;
@@ -45,19 +46,24 @@ namespace Mercury
         {
             try
             {
-                byte[] res = new byte[0];
-
-                int sz = 0;
-                string[] a = CommandTb.Text.Split(' ');
-                for (int j = 0; j < a.Length; j++)
+                if (CommandTb.Text.Trim() != "")
                 {
-                    Array.Resize(ref res, ++sz);
-                    res[sz - 1] = Convert.ToByte(a[j], 16);
+                    byte[] res = new byte[0];
+
+                    int sz = 0;
+                    string[] a = CommandTb.Text.Split(' ');
+                    for (int j = 0; j < a.Length; j++)
+                    {
+                        Array.Resize(ref res, ++sz);
+                        res[sz - 1] = Convert.ToByte(a[j], 16);
+                    }
+
+                    mySerialPort.PortName = ComsCb.Text;
+                    mySerialPort.Open();
+                    mySerialPort.Write(res, 0, res.Length);
+                    mySerialPort.Close();
+                    OuputTB.Text += "Out: " + BitConverter.ToString(res) + "\r\n";
                 }
-                mySerialPort.Open();
-                mySerialPort.Write(res, 0, res.Length);
-                mySerialPort.Close();
-                OuputTB.Text += "Out: " + BitConverter.ToString(res) + "\r\n";
             }
             catch (Exception ex)
             {
