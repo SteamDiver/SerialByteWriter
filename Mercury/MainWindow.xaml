@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mercury"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525"
+        Background="#B4B4B4">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="181*"/>
+            <ColumnDefinition Width="336*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="OuputTB" Margin="10" TextWrapping="Wrap" Grid.Column="1"/>
+        <Button x:Name="SendBtn" Content="Send" Margin="10,0,94.517,10" Height="24" VerticalAlignment="Bottom" Click="SendBtn_Click"/>
+        <TextBox x:Name="CommandTb" Height="23" Margin="10,37.513,10,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+        <Label Content="Command" Foreground="White" Margin="10,10,10,0" VerticalAlignment="Top"/>
+        <Button x:Name="ClearInpBtn" Content="Clear input" Margin="96,0,10,10" Height="24" VerticalAlignment="Bottom" Click="ClearInpBtn_Click"/>
+
     </Grid>
 </Window>
