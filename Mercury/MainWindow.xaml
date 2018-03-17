@@ -36,9 +36,11 @@
         <TextBox x:Name="OuputTB" Margin="10" TextWrapping="Wrap" Grid.Column="2"/>
         <Button x:Name="SendBtn" Content="Send" Margin="10,0,4.517,10" Height="24" VerticalAlignment="Bottom" Click="SendBtn_Click"/>
         <TextBox x:Name="CommandTb" Height="23" Margin="10,73.848,10,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <Label Content="Command" Margin="10,42.848,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26"/>
+        <Label Content="Command (Byte)" Margin="10,42.848,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26"/>
         <Button x:Name="ClearInpBtn" Content="Clear input" Margin="6,0,10,10" Height="24" VerticalAlignment="Bottom" Click="ClearInpBtn_Click" Grid.Column="1"/>
         <ComboBox x:Name="ComsCb" Margin="10,10,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="22"/>
+        <TextBox x:Name="CommandTextTb" Height="23" Margin="10,150.967,10,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label Content="Command (Text)" Margin="10,119.967,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26"/>
 
     </Grid>
 </Window>

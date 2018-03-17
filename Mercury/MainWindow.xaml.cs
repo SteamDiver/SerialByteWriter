@@ -63,6 +63,16 @@ namespace Mercury
                     mySerialPort.Write(res, 0, res.Length);
                     mySerialPort.Close();
                     OuputTB.Text += "Out: " + BitConverter.ToString(res) + "\r\n";
+                    return;
+                }
+                if (CommandTextTb.Text.Trim() != "")
+                {
+                    mySerialPort.PortName = ComsCb.Text;
+                    mySerialPort.Open();
+                    mySerialPort.WriteLine(CommandTextTb.Text);
+                    mySerialPort.Close();
+                    OuputTB.Text += "Out: " + CommandTextTb.Text + "\r\n";
+                    return;
                 }
             }
             catch (Exception ex)
@@ -74,6 +84,11 @@ namespace Mercury
         private void ClearInpBtn_Click(object sender, RoutedEventArgs e)
         {
             CommandTb.Text = String.Empty;
+        }
+
+        private void ClearInpTextBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CommandTextTb.Text = String.Empty;
         }
     }
 }
