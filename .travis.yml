@@ -1,2 +1,3 @@
-language: c#
+language: csharp
 solution: Mercury.sln
+os: wnidows
